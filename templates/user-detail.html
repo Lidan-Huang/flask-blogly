@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div>
+  <div>
+    <img src={{ user.image_url }} alt="user image, if no user image, show default image of tree">
+  </div>
+  <div>
+    <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+      <a href="/users/{{ user.id }}/edit"><button name="edit-btn" id="edit-btn">Edit</button></a>
+    <form action="/users/{{ user.id }}/delete" method="POST">
+      <button name="delete-btn" id="delete-btn">Delete</button>
+    </form>
+  </div>
+
+  <div>
+      <h2>Posts</h2>
+      <ul>
+        {% for post in posts %}
+        <li><a href="/posts/{{ post.id }}">{{ post.title }}</a></li>
+        {% endfor %}
+      </ul>
+      <a href="/users/{{ user.id }}/posts/new">Add Post</a>
+  </div>
+</div>
+{% endblock %}
